@@ -33,13 +33,15 @@ const Task = ({ task, changeStatus, deleteTask }: TaskProps) => {
     <div className="task" onClick={clickHandler}>
       <div className="text-and-delete">
         <span className="task-title">{task.title}</span>
-        <img
-          className="delete"
-          title="Delete"
-          alt="delete"
-          id={DELETE}
-          src="/Resources/Icons/delete.svg"
-        />
+        <div className="img-container">
+          <img
+            className="delete"
+            title="Delete"
+            alt="delete"
+            id={DELETE}
+            src="/Resources/Icons/delete.svg"
+          />
+        </div>
       </div>
       <Icons task={task} />
     </div>
@@ -50,35 +52,43 @@ const Icons = ({ task }: { task: TaskType }) => {
   if (task.status === TODO) {
     return (
       <div className="change-status-container">
-        <img
-          src="/Resources/Icons/inProgress.png"
-          title="In Progress"
-          alt="In Progress"
-          id={IN_PROGRESS}
-        />
-        <img
-          src="/Resources/Icons/complete.png"
-          title="Completed"
-          alt="Completed"
-          id={COMPLETED}
-        />
+        <div className="img-container">
+          <img
+            src="/Resources/Icons/inProgress.png"
+            title="In Progress"
+            alt="In Progress"
+            id={IN_PROGRESS}
+          />
+        </div>
+        <div className="img-container">
+          <img
+            src="/Resources/Icons/complete.png"
+            title="Completed"
+            alt="Completed"
+            id={COMPLETED}
+          />
+        </div>
       </div>
     );
   } else if (task.status === IN_PROGRESS) {
     return (
       <div className="change-status-container">
-        <img
-          src="/Resources/Icons/todo.png"
-          title="To Do"
-          alt="To Do"
-          id={TODO}
-        />
-        <img
-          src="/Resources/Icons/complete.png"
-          title="Completed"
-          alt="Completed"
-          id={COMPLETED}
-        />
+        <div className="img-container">
+          <img
+            src="/Resources/Icons/todo.png"
+            title="To Do"
+            alt="To Do"
+            id={TODO}
+          />
+        </div>
+        <div className="img-container">
+          <img
+            src="/Resources/Icons/complete.png"
+            title="Completed"
+            alt="Completed"
+            id={COMPLETED}
+          />
+        </div>
       </div>
     );
   }
@@ -86,18 +96,22 @@ const Icons = ({ task }: { task: TaskType }) => {
   if (task.status === COMPLETED) {
     return (
       <div className="change-status-container">
-        <img
-          src="/Resources/Icons/todo.png"
-          title="To Do"
-          alt="To Do"
-          id={TODO}
-        />
-        <img
-          src="/Resources/Icons/inProgress.png"
-          title="In Progress"
-          alt="In Progress"
-          id={IN_PROGRESS}
-        />
+        <div className="img-container">
+          <img
+            src="/Resources/Icons/todo.png"
+            title="To Do"
+            alt="To Do"
+            id={TODO}
+          />
+        </div>
+        <div className="img-container">
+          <img
+            src="/Resources/Icons/inProgress.png"
+            title="In Progress"
+            alt="In Progress"
+            id={IN_PROGRESS}
+          />
+        </div>
       </div>
     );
   }
