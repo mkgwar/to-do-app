@@ -10,6 +10,8 @@ const FIREBASE_CONFIG = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
+console.log(FIREBASE_CONFIG);
+
 const app = initializeApp(FIREBASE_CONFIG);
 
 export const db = getFirestore(app);

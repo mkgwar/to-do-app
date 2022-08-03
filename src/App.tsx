@@ -5,7 +5,8 @@ import TodoTaskList from "./Components/TodoTaskList";
 import InProgressTaskList from "./Components/InProgressTaskList";
 import CompletedTaskList from "./Components/CompletedTaskList";
 import { TaskType, statusObj } from "./Models";
-import "./firebase-config";
+import { db } from "./firebase-config";
+import { addDoc, collection } from "firebase/firestore";
 
 export const TODO = "TODO";
 export const IN_PROGRESS = "IN_PROGRESS";
