@@ -13,4 +13,3 @@ const FIREBASE_CONFIG = {
 const app = initializeApp(FIREBASE_CONFIG);
 
 export const db = getFirestore(app);
-console.log(process.env);
