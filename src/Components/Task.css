@@ -1,0 +1,37 @@
+.task {
+  width: 100%;
+  padding: 1rem;
+  background-color: white;
+  font-weight: 600;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.text-and-delete {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-title {
+  width: 80%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.task img {
+  height: 1rem;
+  cursor: pointer;
+}
+
+.change-status-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
