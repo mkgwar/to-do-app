@@ -37,8 +37,8 @@ const App = () => {
       from: keyof typeof statusObj,
       to: keyof typeof statusObj
     ) => {
-      const temp1 = statusObj[from].list.filter((t) => t !== task);
-      const newTask = { title: task.title, status: to };
+      const temp1 = statusObj[from].list.filter((t) => t.id !== task.id);
+      const newTask = { ...task, status: to };
       const temp2 = [...statusObj[to].list, newTask];
 
       statusObj[from].setFunc(temp1);

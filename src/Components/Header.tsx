@@ -21,6 +21,7 @@ const Header = ({ addTask }: HeaderProps) => {
         inputElement.current.value = "";
         if (showWarning) setshowWarning(false);
         const tempTask: TaskType = {
+          id: Date.now(),
           title: taskTitle,
           status: TODO,
         };
