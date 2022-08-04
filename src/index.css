@@ -6,6 +6,24 @@
   box-sizing: border-box;
 }
 
-html {
+body {
   font-family: "Open Sans", sans-serif;
+}
+
+* {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #eb5353 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #eb5353;
 }
