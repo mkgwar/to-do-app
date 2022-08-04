@@ -21,7 +21,7 @@ body {
 }
 
 *::-webkit-scrollbar-track {
-  background: transparent;
+  background-color: transparent;
 }
 
 *::-webkit-scrollbar-thumb {
