@@ -15,6 +15,7 @@ const Dashboard = () => {
   const [todoTaskList, settodoTaskList] = useState<TaskType[]>([]);
   const [inProgressTaskList, setinProgressTaskList] = useState<TaskType[]>([]);
   const [completedTaskList, setcompletedTaskList] = useState<TaskType[]>([]);
+  const [showTasks, setshowTasks] = useState<boolean>(false);
 
   const userAuth = useAuth();
 
@@ -46,6 +47,7 @@ const Dashboard = () => {
         settodoTaskList(todo);
         setinProgressTaskList(progress);
         setcompletedTaskList(completed);
+        setshowTasks(true);
       }
     };
 
@@ -97,16 +99,19 @@ const Dashboard = () => {
           todoTaskList={todoTaskList}
           changeStatus={changeStatus}
           deleteTask={deleteTask}
+          showTasks={showTasks}
         />
         <InProgressTaskList
           inProgressTaskList={inProgressTaskList}
           changeStatus={changeStatus}
           deleteTask={deleteTask}
+          showTasks={showTasks}
         />
         <CompletedTaskList
           completedTaskList={completedTaskList}
           changeStatus={changeStatus}
           deleteTask={deleteTask}
+          showTasks={showTasks}
         />
       </section>
     </div>
