@@ -1,11 +1,19 @@
 import { useContext, createContext, useState, useEffect } from "react";
-import { auth } from "./firebase-config";
+import { auth, db } from "./firebase-config";
 import {
   signInWithEmailAndPassword,
   signOut,
   User,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
+import { statusObj, TaskType } from "./Models";
+import {
+  collection,
+  setDoc,
+  doc,
+  deleteDoc,
+  getDocs,
+} from "firebase/firestore";
 
 interface ContextValueType {
   user: User | null;
@@ -13,6 +21,10 @@ interface ContextValueType {
   logout: Function;
   signup: Function;
   showForm: boolean;
+  addTaskDb: Function;
+  changeStatusDb: Function;
+  deleteTaskDb: Function;
+  getAllDocsDb: Function;
 }
 
 const authContext = createContext<ContextValueType | null>(null);
@@ -47,12 +59,44 @@ const UserContext = ({ children }: { children: React.ReactNode }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  const addTaskDb = (task: TaskType) => {
+    if (user) {
+      const dbRef = collection(db, user.uid);
+      return setDoc(doc(dbRef, task.id), task);
+    }
+  };
+
+  const changeStatusDb = (task: TaskType, to: keyof typeof statusObj) => {
+    if (user) {
+      const dbRef = collection(db, user.uid);
+      return setDoc(doc(dbRef, task.id), { ...task, status: to });
+    }
+  };
+
+  const deleteTaskDb = (task: TaskType) => {
+    if (user) {
+      const dbRef = collection(db, user.uid);
+      return deleteDoc(doc(dbRef, task.id));
+    }
+  };
+
+  const getAllDocsDb = () => {
+    if (user) {
+      const dbRef = collection(db, user.uid);
+      return getDocs(dbRef);
+    }
+  };
+
   const value: ContextValueType = {
     user,
     login,
     logout,
     signup,
     showForm,
+    addTaskDb,
+    changeStatusDb,
+    deleteTaskDb,
+    getAllDocsDb,
   };
 
   return <authContext.Provider value={value}>{children}</authContext.Provider>;

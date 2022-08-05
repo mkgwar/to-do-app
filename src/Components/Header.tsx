@@ -4,6 +4,7 @@ import { TaskType } from "../Utilities/Models";
 import "./Header.css";
 import { useAuth } from "../Utilities/UserContext";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 interface HeaderProps {
   addTask: (task: TaskType) => void;
@@ -25,7 +26,7 @@ const Header = ({ addTask }: HeaderProps) => {
         inputElement.current.value = "";
         if (showWarning) setshowWarning(false);
         const tempTask: TaskType = {
-          id: Date.now(),
+          id: uuidv4(),
           title: taskTitle,
           status: TODO,
         };

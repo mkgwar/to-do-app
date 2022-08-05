@@ -1,5 +1,5 @@
 export interface TaskType {
-  id: number;
+  id: string;
   title: string;
   status: keyof typeof statusObj;
 }

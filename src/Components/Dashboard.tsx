@@ -27,13 +27,42 @@ const Dashboard = () => {
     statusObj[COMPLETED].setFunc = setcompletedTaskList;
   }, [todoTaskList, inProgressTaskList, completedTaskList]);
 
-  const addTask = useCallback((task: TaskType) => {
-    const newList = [...statusObj[TODO].list, task];
-    statusObj[TODO].setFunc(newList);
-  }, []);
+  useEffect(() => {
+    const setInitialTasks = async () => {
+      if (userAuth) {
+        const todo: TaskType[] = [];
+        const progress: TaskType[] = [];
+        const completed: TaskType[] = [];
+
+        const dbTasks = await userAuth.getAllDocsDb();
+
+        dbTasks.forEach((element: any) => {
+          const task = element.data();
+          if (task.status === TODO) todo.push(task);
+          else if (task.status === IN_PROGRESS) progress.push(task);
+          else if (task.status === COMPLETED) completed.push(task);
+        });
+
+        settodoTaskList(todo);
+        setinProgressTaskList(progress);
+        setcompletedTaskList(completed);
+      }
+    };
+
+    setInitialTasks();
+  }, [userAuth]);
+
+  const addTask = useCallback(
+    async (task: TaskType) => {
+      const newList = [...statusObj[TODO].list, task];
+      statusObj[TODO].setFunc(newList);
+      await userAuth?.addTaskDb(task);
+    },
+    [userAuth]
+  );
 
   const changeStatus = useCallback(
-    (
+    async (
       task: TaskType,
       from: keyof typeof statusObj,
       to: keyof typeof statusObj
@@ -44,16 +73,20 @@ const Dashboard = () => {
 
       statusObj[from].setFunc(temp1);
       statusObj[to].setFunc(temp2);
+
+      await userAuth?.changeStatusDb(task, to);
     },
-    []
+    [userAuth]
   );
 
   const deleteTask = useCallback(
-    (task: TaskType, from: keyof typeof statusObj) => {
+    async (task: TaskType, from: keyof typeof statusObj) => {
       const temp1 = statusObj[from].list.filter((t) => t !== task);
       statusObj[from].setFunc(temp1);
+
+      await userAuth?.deleteTaskDb(task);
     },
-    []
+    [userAuth]
   );
 
   return (
