@@ -1,7 +1,7 @@
 import { memo } from "react";
 import "./Task.css";
-import { TODO, IN_PROGRESS, COMPLETED } from "../App";
-import { TaskType, statusObj } from "../Models";
+import { TODO, IN_PROGRESS, COMPLETED } from "./Dashboard";
+import { TaskType, statusObj } from "../Utilities/Models";
 
 interface TaskProps {
   task: TaskType;

@@ -1,7 +1,7 @@
 import { memo } from "react";
 import Task from "./Task";
 import "./TaskList.css";
-import { TaskType, statusObj } from "../Models";
+import { TaskType, statusObj } from "../Utilities/Models";
 
 interface TodoTaskListProps {
   todoTaskList: TaskType[];

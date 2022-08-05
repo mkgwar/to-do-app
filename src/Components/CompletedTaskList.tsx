@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { TaskType, statusObj } from "../Models";
+import { TaskType, statusObj } from "../Utilities/Models";
 import Task from "./Task";
 import "./TaskList.css";
 

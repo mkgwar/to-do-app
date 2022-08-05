@@ -1,6 +1,6 @@
 import { memo } from "react";
 import "./TaskList.css";
-import { TaskType, statusObj } from "../Models";
+import { TaskType, statusObj } from "../Utilities/Models";
 import Task from "./Task";
 
 interface InProgressTaskListProps {

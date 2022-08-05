@@ -1,7 +1,9 @@
 import React, { memo, useRef, useState } from "react";
-import { TODO } from "../App";
-import { TaskType } from "../Models";
+import { TODO } from "./Dashboard";
+import { TaskType } from "../Utilities/Models";
 import "./Header.css";
+import { useAuth } from "../Utilities/UserContext";
+import { Link } from "react-router-dom";
 
 interface HeaderProps {
   addTask: (task: TaskType) => void;
@@ -10,6 +12,8 @@ interface HeaderProps {
 const Header = ({ addTask }: HeaderProps) => {
   const inputElement = useRef<HTMLInputElement>(null);
   const [showWarning, setshowWarning] = useState<boolean>(false);
+
+  const userAuth = useAuth();
 
   const submitHandler = () => {
     if (inputElement.current) {
@@ -39,19 +43,27 @@ const Header = ({ addTask }: HeaderProps) => {
 
   return (
     <header>
-      <div className="logo">
-        <h3>MKGWAR's</h3>
-        <h1>TO DO</h1>
+      <div className="top">
+        <div className="logo">
+          <h3>MKGWAR's</h3>
+          <h1>TO DO</h1>
+        </div>
+        <div className="add-task-container">
+          <input
+            ref={inputElement}
+            type="text"
+            placeholder="Enter Task"
+            className={showWarning ? "warning" : ""}
+            onKeyDown={keyDownHandler}
+          />
+          <button onClick={submitHandler}>Add Task</button>
+        </div>
       </div>
-      <div className="add-task-container">
-        <input
-          ref={inputElement}
-          type="text"
-          placeholder="Enter Task"
-          className={showWarning ? "warning" : ""}
-          onKeyDown={keyDownHandler}
-        />
-        <button onClick={submitHandler}>Add Task</button>
+      <div className="user-details">
+        <span className="email">{userAuth?.user?.email}</span>
+        <Link to="/" onClick={() => userAuth?.logout()}>
+          Sign out
+        </Link>
       </div>
     </header>
   );
