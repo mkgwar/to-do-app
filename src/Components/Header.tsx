@@ -61,7 +61,7 @@ const Header = ({ addTask }: HeaderProps) => {
         </div>
       </div>
       <div className="user-details">
-        <span className="email">{userAuth?.user?.email}</span>
+        <span className="email">Welcome {userAuth?.user?.email}</span>
         <Link to="/" onClick={() => userAuth?.logout()}>
           Sign out
         </Link>
