@@ -1,6 +1,6 @@
 import "./App.css";
 import Dashboard from "./Components/Dashboard";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import RouteAuthenticator from "./Utilities/RouteAuthenticator";
 import UserContext from "./Utilities/UserContext";
 import Login from "./Components/Login";
@@ -20,6 +20,7 @@ const App = () => {
             </RouteAuthenticator>
           }
         />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </UserContext>
   );
